@@ -1,209 +1,1005 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Wealth Options University - Learn financial strategies, exclusive courses, and coaching with Mrs. Tiphany Richardson.">
-  <title>Wealth Options University</title>
+  <!-- Meta & SEO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wealth Options University | Membership, eCourses, Coaching</title>
+  <meta name="description" content="Wealth Options University by Mrs. Tiphany Richardson—monthly membership, eCourses, live coaching, and downloadable lessons. Bright prosperity theme, easy navigation." />
+  <link rel="canonical" href="https://www.wealthoptionsuniversity.com/" />
+  <meta property="og:title" content="Wealth Options University" />
+  <meta property="og:description" content="Membership, eCourses, live coaching, and downloadable lessons." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://i.postimg.cc/6qJrRvk0/Wealth-Options-University.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script defer src="https://js.stripe.com/v3/"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Wealth Options University",
+    "url":"https://www.wealthoptionsuniversity.com",
+    "description":"Membership, eCourses, and coaching by Mrs. Tiphany Richardson",
+    "founder": {"@type": "Person", "name": "Mrs. Tiphany Richardson"}
+  }
+  </script>
+
+  <!-- Styles (bright prosperity theme: light backgrounds, greens, golds) -->
   <style>
-    /* Global styles */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #1a1a1a;
+    :root{
+      /* Backgrounds */
+      --bg:#f9fafc;
+      --card:#ffffff;
+      --glass:rgba(255,255,255,0.9);
+
+      /* Text */
+      --text:#1a1a1a;
+      --muted:#555;
+
+      /* Brand */
+      --primary:#28c76f; /* money green */
+      --accent:#ffd166;  /* gold */
+      --bless:#7c4dff;   /* blessing glow (used lightly) */
+      --danger:#ff3b3b;
+
+      /* Effects */
+      --shadow:0 8px 28px rgba(0,0,0,0.10);
+      --maxw:1200px;
+
+      /* Soft gradients */
+      --gradient-sunrise: linear-gradient(135deg, #fffbe6 0%, #f0fff7 50%, #f9f9ff 100%);
+      --gradient-gold: linear-gradient(135deg, #fffbe6 0%, #fff5d6 100%);
+      --gradient-mint: linear-gradient(135deg, #eafff3 0%, #f2fff9 100%);
     }
-    header {
-      background: linear-gradient(90deg, #0ea5e9, #22c55e, #fbbf24);
-      color: white;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif}
+    a{color:var(--text);text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{max-width:var(--maxw);margin:0 auto}
+    .site-header{position:sticky;top:0;z-index:100;background:var(--glass);backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+    .logo-img{height:48px;border-radius:8px;box-shadow:var(--shadow)}
+    .tagline{color:#2a7749;margin-left:8px;font-size:.9rem}
+    .nav a{margin:0 8px}
+    .btn-primary{background:var(--primary);color:#053515;padding:10px 16px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);border:none;cursor:pointer}
+    .btn-ghost{border:1px solid rgba(0,0,0,0.12);padding:10px 16px;border-radius:12px;background:#fff;color:var(--text);cursor:pointer}
+    .small{font-size:.85rem;padding:6px 10px}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);color:#2a7749;background:#f0fff7;font-size:.8rem}
+
+    .nav-toggle{display:none;background:transparent;color:var(--text);border:none;font-size:1.2rem}
+    @media (max-width:900px){
+      .nav{display:none;position:absolute;top:58px;right:12px;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)}
+      .nav a{display:block;margin:10px 0}
+      .nav-toggle{display:block}
     }
-    header nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header nav a {
-      margin: 0 10px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    header nav a:hover {
-      color: #fef9c3;
-    }
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .hero {
-      background: url('https://source.unsplash.com/1600x900/?success,university,wealth') no-repeat center/cover;
-      color: white;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-    }
-    .btn {
-      background: #0ea5e9;
-      padding: 12px 24px;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      margin: 5px;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .btn:hover {
-      background: #22c55e;
-      transform: scale(1.05);
-    }
-    .course-card {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 15px;
-      display: inline-block;
-      width: 280px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    }
-    .course-card h3 {
-      color: #0ea5e9;
-    }
-    /* Video gallery */
-    .video-gallery video {
-      width: 280px;
-      border-radius: 8px;
-      margin: 10px;
-    }
-    /* Chat bubble */
-    .chat-bubble {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #0ea5e9;
-      color: white;
-      padding: 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .hidden {
-      display: none;
-    }
-    footer {
-      background: #0ea5e9;
-      color: white;
-      padding: 20px;
-    }
-    @media (max-width: 768px) {
-      .course-card, .video-gallery video {
-        width: 90%;
-      }
-    }
+
+    .section{display:none}
+    .section.active{display:block}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;padding:40px 18px;background:var(--gradient-sunrise)}
+    .hero-content{padding:10px}
+    .hero-art{position:relative;min-height:240px}
+    .coin-burst::before{content:"";position:absolute;inset:0;background:
+      radial-gradient(circle at 25% 30%, rgba(40,199,111,.18), transparent 40%),
+      radial-gradient(circle at 65% 60%, rgba(255,209,102,.18), transparent 40%)}
+    .glow-orb{position:absolute;right:20%;top:10%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle, rgba(124,77,255,.25), transparent 70%);filter:blur(3px);animation:pulse 6s infinite ease-in-out}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+    .reveal{opacity:0;transform:translateY(10px);animation:reveal .7s forwards}
+    .reveal.delay-1{animation-delay:.2s}
+    .reveal.delay-2{animation-delay:.4s}
+    @keyframes reveal{to{opacity:1;transform:none}}
+
+    .features,.pricing,.videos,.downloads,.booking-form,.upload-area,.live-player,.testimonials,.course-grid,.cta-banner,.page-hero,.auth-panels{padding:30px 18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+
+    .card,.course-card,.price-card{background:var(--card);border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+    .pop{transition:transform .2s ease, box-shadow .2s ease}
+    .pop:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.15)}
+
+    .page-hero{padding:40px 18px}
+    .gradient-gold{background:var(--gradient-gold)}
+    .gradient-mint{background:var(--gradient-mint)}
+    .gradient-sunrise{background:var(--gradient-sunrise)}
+
+    .responsive-embed{position:relative;padding-bottom:56.25%;height:0}
+    .responsive-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px}
+
+    .site-footer{padding:18px;border-top:1px solid rgba(0,0,0,0.08);background:#fff}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+    @media (max-width:900px){.footer-grid{grid-template-columns:1fr}}
+    .copy{color:var(--muted);text-align:center}
+
+    .chat-bubble{position:fixed;right:18px;bottom:18px;z-index:200}
+    .chat-toggle{border:none;background:var(--accent);color:#4a3b00;width:54px;height:54px;border-radius:50%;box-shadow:var(--shadow);cursor:pointer}
+    .chat-window{display:none;position:absolute;right:0;bottom:64px;width:320px;background:var(--card);border:1px solid rgba(0,0,0,0.08);border-radius:12px;box-shadow:var(--shadow)}
+    .chat-header{padding:10px;border-bottom:1px solid rgba(0,0,0,0.08);font-weight:700}
+    .chat-body{height:220px;overflow:auto;padding:10px}
+    .msg{margin-bottom:10px}
+    .msg.user{color:#111}
+    .msg.system{color:var(--muted)}
+    .chat-input{display:flex;border-top:1px solid rgba(0,0,0,0.08)}
+    .chat-input input{flex:1;padding:10px;background:transparent;border:none;color:var(--text)}
+    .chat-input button{border:none;background:var(--primary);color:#053515;padding:10px;border-radius:0 0 12px 0}
+
+    .modal.hidden{display:none}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;z-index:300}
+    .modal-content{background:var(--card);padding:18px;border-radius:12px;max-width:500px;width:90%;box-shadow:var(--shadow)}
+    .modal-close{position:absolute;right:18px;top:18px;background:transparent;border:none;color:var(--text);font-size:1.2rem}
+
+    .drop-zone{border:2px dashed rgba(0,0,0,0.15);border-radius:12px;padding:20px;text-align:center;cursor:pointer;background:#f7fbff}
+    .download-list{list-style:none;padding:0;margin:0}
+    .download-list li{display:flex;align-items:center;justify-content:space-between;padding:10px;border-bottom:1px solid rgba(0,0,0,0.08)}
+    .meta{list-style:none;padding:0;margin:10px 0;color:var(--muted);font-size:.95rem}
+    .price{font-size:1.6rem;color:#3e3e3e;font-weight:800}
+
+    .dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+    .dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(0,0,0,0.15);cursor:pointer}
+    .dots button.active{background:var(--accent)}
+
+    .auth-panels .card{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media (max-width:900px){.auth-panels .card{grid-template-columns:1fr}}
+    .notice{background:#fff8e6;border:1px solid #ffe3a3;color:#7a6400;padding:10px;border-radius:10px}
+
+    /* Simple icon grid for finance images */
+    .icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px}
+    @media (max-width:900px){.icon-grid{grid-template-columns:repeat(2,1fr)}}
+    .icon-grid img{height:48px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.08))}
   </style>
 </head>
-<body>
 
-  <header>
-    <nav>
-      <div><strong>Wealth Options University</strong></div>
+<body>
+  <!-- Header -->
+  <header class="site-header glass">
+    <div class="brand" style="display:flex;align-items:center;gap:10px">
+      <img src="https://i.postimg.cc/6qJrRvk0/Wealth-Options-University.jpg" alt="Wealth Options University Logo" class="logo-img" />
       <div>
-        <a href="#home">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#videos">Videos</a>
-        <a href="#booking">1-on-1</a>
-        <a href="#live">Go Live</a>
-        <a href="#login">Login</a>
+        <a href="#/" class="logo" style="font-weight:700">Wealth Options University</a>
+        <div class="tagline">Future • Money • Blessings</div>
       </div>
+    </div>
+    <nav class="nav">
+      <a href="#/courses">eCourses</a>
+      <a href="#/membership">Membership</a>
+      <a href="#/live">Go Live</a>
+      <a href="#/booking">1-on-1</a>
+      <a href="#/dashboard" class="btn-primary small">Dashboard</a>
+      <a href="#/admin" class="btn-ghost small">Admin</a>
+      <span class="pill">By Mrs. Tiphany Richardson</span>
     </nav>
+    <button class="nav-toggle" aria-label="Open menu">☰</button>
   </header>
 
-  <section id="home" class="hero">
-    <h1>Welcome to Wealth Options University</h1>
-    <h2>with Mrs. Tiphany Richardson</h2>
-    <p>Prosperity, Blessings, and Financial Freedom await you.</p>
-    <button class="btn" onclick="document.getElementById('courses').scrollIntoView()">Explore Courses</button>
-  </section>
+  <!-- Sections (multi-page SPA with hash routes) -->
+  <main>
 
-  <section id="courses">
-    <h2>Membership & Courses</h2>
-    <div class="course-card">
-      <h3>Monthly Membership</h3>
-      <p>Access all exclusive courses & insights</p>
-      <button class="btn" onclick="checkout('membership')">Subscribe $49/month</button>
+    <!-- Home -->
+    <section class="section active" data-route="/">
+      <div class="hero gradient-sunrise container">
+        <div class="hero-content">
+          <h1 class="reveal">Build wealth with guidance you can trust.</h1>
+          <p class="reveal delay-1">Curated eCourses and private coaching by <strong>Mrs. Tiphany Richardson</strong>. Join the community or purchase courses à la carte.</p>
+          <div class="hero-cta reveal delay-2" style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="#/membership" class="btn-primary">Join Monthly</a>
+            <a href="#/courses" class="btn-ghost">Browse eCourses</a>
+          </div>
+          <div class="icon-grid reveal delay-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331930.png" alt="Stocks icon" />
+            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Growth icon" />
+            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331958.png" alt="Digital income icon" />
+            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" alt="Curriculum icon" />
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="coin-burst"></div>
+          <div class="glow-orb"></div>
+          <!-- Finance graph hero image -->
+          <img src="https://img.freepik.com/free-vector/financial-growth-graph_53876-90406.jpg" alt="Financial Growth Graph" style="border-radius:16px;box-shadow:var(--shadow)" />
+        </div>
+      </div>
+
+      <section class="features container">
+        <h2>Why Wealth Options University</h2>
+        <div class="grid-3">
+          <div class="card pop">
+            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" alt="Curriculum Icon" style="height:60px;margin-bottom:8px" />
+            <h3>Premium Curriculum</h3>
+            <p>Step-by-step lessons, screen recordings, and templates you can download.</p>
+          </div>
+          <div class="card pop">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Live Support Icon" style="height:60px;margin-bottom:8px" />
+            <h3>Live Support</h3>
+            <p>Go live with the community and book 1-on-1 sessions after your purchase.</p>
+          </div>
+          <div class="card pop">
+            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Flexible Access Icon" style="height:60px;margin-bottom:8px" />
+            <h3>Flexible Access</h3>
+            <p>Monthly membership or single course—choose the path that fits your goals.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-banner gradient-mint container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h2>Ready to take action?</h2>
+        <p>Join now to unlock members-only resources and weekly live sessions.</p>
+        <a href="#/membership" class="btn-primary">Become a Member</a>
+      </section>
+
+      <section class="testimonials container">
+        <h2>Student wins</h2>
+        <div class="carousel">
+          <div class="slide active">
+            <blockquote>“I launched my first product after Module 2. Clear, empowering lessons!”</blockquote>
+            <cite>— A. Daniels</cite>
+          </div>
+          <div class="slide">
+            <blockquote>“The 1-on-1 session changed my roadmap completely.”</blockquote>
+            <cite>— L. Perez</cite>
+          </div>
+          <div class="slide">
+            <blockquote>“Membership keeps me accountable. The live Q&As are gold.”</blockquote>
+            <cite>— S. Moore</cite>
+          </div>
+        </div>
+        <div class="dots"></div>
+      </section>
+    </section>
+
+    <!-- eCourses -->
+    <section class="section" data-route="/courses">
+      <section class="page-hero gradient-gold container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h1>Choose your course</h1>
+        <p>Purchase to unlock recorded videos, downloads, and booking privileges.</p>
+      </section>
+
+      <section class="course-grid container">
+        <div class="course-card pop" data-price="price_course_foundations">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135673.png" alt="Foundations Icon" style="height:60px;margin-bottom:8px" />
+          <h3>Wealth Foundations</h3>
+          <p>Mindset, budgeting, and compounding strategies.</p>
+          <ul class="meta">
+            <li>3 hours video • 8 downloads</li>
+            <li>Beginner friendly</li>
+          </ul>
+          <button class="btn-primary start-checkout" data-course-id="foundations">Buy eCourse</button>
+        </div>
+
+        <div class="course-card pop" data-price="price_course_digitalincome">
+          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331958.png" alt="Digital Income Icon" style="height:60px;margin-bottom:8px" />
+          <h3>Digital Income Playbook</h3>
+          <p>Launch your first digital product with templates.</p>
+          <ul class="meta">
+            <li>4.5 hours video • 12 downloads</li>
+            <li>Intermediate</li>
+          </ul>
+          <button class="btn-primary start-checkout" data-course-id="digitalincome">Buy eCourse</button>
+        </div>
+
+        <div class="course-card pop" data-price="price_course_investing101">
+          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331930.png" alt="Investing Icon" style="height:60px;margin-bottom:8px" />
+          <h3>Investing 101</h3>
+          <p>Intro to stocks, ETFs, and risk management.</p>
+          <ul class="meta">
+            <li>3.5 hours video • 10 downloads</li>
+            <li>Beginner</li>
+          </ul>
+          <button class="btn-primary start-checkout" data-course-id="investing101">Buy eCourse</button>
+        </div>
+      </section>
+
+      <section class="container">
+        <p>After purchase, visit your <a href="#/dashboard">Dashboard</a> to access videos, downloads, and booking.</p>
+      </section>
+    </section>
+
+    <!-- Membership -->
+    <section class="section" data-route="/membership">
+      <section class="page-hero gradient-mint container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h1>Membership: Stay supported every month</h1>
+        <p>Exclusive live sessions, member-only downloads, and priority booking.</p>
+      </section>
+
+      <section class="pricing container">
+        <div class="price-card pop" data-price="price_membership_monthly">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135714.png" alt="Membership Icon" style="height:60px;margin-bottom:8px" />
+          <h3>Monthly</h3>
+          <p class="price">$49 / month</p>
+          <ul class="meta">
+            <li>Weekly live Q&A</li>
+            <li>Member-only vault</li>
+            <li>Priority support</li>
+          </ul>
+          <button class="btn-primary start-checkout" data-membership="monthly">Subscribe</button>
+        </div>
+      </section>
+
+      <section class="faq container">
+        <h2>Membership FAQ</h2>
+        <details>
+          <summary>What’s included?</summary>
+          <p>Access to live sessions, selected member-only courses, and premium templates.</p>
+        </details>
+        <details>
+          <summary>Cancel anytime?</summary>
+          <p>Yes, you can manage your subscription from your Dashboard.</p>
+        </details>
+      </section>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="section" data-route="/dashboard">
+      <section class="page-hero gradient-gold container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h1>Welcome back, <span id="user-name">Student</span></h1>
+        <p id="access-note" class="access-note">Sign in to view your content.</p>
+        <div style="margin-top:10px">
+          <span class="pill">Dashboard</span>
+          <button id="logout" class="btn-ghost small" style="margin-left:10px">Logout</button>
+        </div>
+      </section>
+
+      <section class="auth-panels container">
+        <div class="card">
+          <div>
+            <h3>Member sign in</h3>
+            <p class="muted">Use the email from your purchase to access courses and downloads.</p>
+            <label><span>Email</span><input type="email" id="login-email" placeholder="Email" /></label>
+            <label><span>Password</span><input type="password" id="login-pass" placeholder="Password" /></label>
+            <button id="login-submit" class="btn-primary">Sign in</button>
+            <p class="small">Accounts are created automatically after Stripe checkout.</p>
+          </div>
+          <div>
+            <h3>Admin sign in</h3>
+            <p class="muted">For Mrs. Richardson to upload videos and manage content.</p>
+            <label><span>Admin email</span><input type="email" id="admin-email" placeholder="admin@example.com" /></label>
+            <label><span>Admin password</span><input type="password" id="admin-pass" placeholder="••••••••" /></label>
+            <button id="admin-submit" class="btn-ghost">Sign in as Admin</button>
+            <p class="small notice">Secure this with server-side verification and roles in production.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="videos container">
+        <h2>Your recorded videos</h2>
+        <div id="video-list" class="grid-3"></div>
+      </section>
+
+      <section class="downloads container">
+        <h2>Downloads</h2>
+        <ul id="download-list" class="download-list"></ul>
+      </section>
+
+      <section class="actions container" style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#/booking" class="btn-primary">Book a 1-on-1</a>
+        <a href="#/live" class="btn-ghost">Join Live</a>
+        <a href="#/admin" class="btn-ghost">Admin Uploads</a>
+      </section>
+    </section>
+
+    <!-- Booking -->
+    <section class="section" data-route="/booking">
+      <section class="page-hero gradient-mint container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h1>Book your 1-on-1</h1>
+        <p>Available to members and course purchasers.</p>
+      </section>
+
+      <section class="booking-form pop container">
+        <h2>Schedule</h2>
+        <form id="booking-form">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            <span>Course or Membership</span>
+            <select name="entitlement" required>
+              <option value="">Select...</option>
+              <option value="membership">Membership</option>
+              <option value="foundations">Wealth Foundations</option>
+              <option value="digitalincome">Digital Income Playbook</option>
+              <option value="investing101">Investing 101</option>
+            </select>
+          </label>
+          <label>
+            <span>Date</span>
+            <input type="date" name="date" required />
+          </label>
+          <label>
+            <span>Time</span>
+            <input type="time" name="time" required />
+          </label>
+          <label>
+            <span>Notes</span>
+            <textarea name="notes" placeholder="What do you want to focus on?"></textarea>
+          </label>
+          <button class="btn-primary">Request booking</button>
+        </form>
+        <p class="small">You’ll receive a confirmation email if your entitlement is valid.</p>
+      </section>
+    </section>
+
+    <!-- Live -->
+    <section class="section" data-route="/live">
+      <section class="page-hero gradient-gold container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h1>We’re live</h1>
+        <p>Members get priority access. Check your Dashboard for upcoming schedule.</p>
+      </section>
+
+      <section class="live-player pop container">
+        <div class="responsive-embed">
+          <!-- Example YouTube Live embed; replace with your live source -->
+          <iframe src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Live Stream" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="live-chat" style="margin-top:16px">
+          <h3>Live chat</h3>
+          <div id="live-chat-body" class="chat-body"></div>
+          <div class="chat-input">
+            <input type="text" id="live-chat-text" placeholder="Say hello..." />
+            <button id="live-chat-send">Send</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Admin uploads (requires admin sign-in) -->
+    <section class="section" data-route="/admin">
+      <section class="page-hero gradient-mint container" style="border-radius:16px;box-shadow:var(--shadow)">
+        <h1>Upload recorded videos</h1>
+        <p>Drag-and-drop or browse files. Videos attach to selected courses.</p>
+      </section>
+
+      <section class="upload-area pop container">
+        <div id="admin-guard" class="notice" style="margin-bottom:12px">Admin access required. Sign in from the Dashboard.</div>
+        <form id="upload-form" style="display:none">
+          <label>
+            <span>Course</span>
+            <select name="course" required>
+              <option value="">Select course...</option>
+              <option value="foundations">Wealth Foundations</option>
+              <option value="digitalincome">Digital Income Playbook</option>
+              <option value="investing101">Investing 101</option>
+            </select>
+          </label>
+
+          <div id="drop-zone" class="drop-zone">
+            <p>Drop files here or click to browse</p>
+            <input type="file" id="video-file" accept="video/*" hidden />
+          </div>
+
+          <label>
+            <span>Title</span>
+            <input type="text" name="title" placeholder="Lesson title" required />
+          </label>
+          <label>
+            <span>Description</span>
+            <textarea name="description" placeholder="Short description"></textarea>
+          </label>
+
+          <button class="btn-primary">Upload video</button>
+          <p id="upload-status" class="small"></p>
+        </form>
+
+        <section class="admin-list">
+          <h2>Existing content</h2>
+          <ul id="admin-video-list" class="download-list"></ul>
+        </section>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid container">
+      <div>
+        <strong>Wealth Options University</strong>
+        <p>By Mrs. Tiphany Richardson</p>
+      </div>
+      <div>
+        <p><a href="#/courses">eCourses</a> • <a href="#/membership">Membership</a> • <a href="#/booking">1-on-1</a></p>
+        <p><a href="#/live">Go Live</a> • <a href="#/dashboard">Dashboard</a> • <a href="#/admin">Admin</a></p>
+      </div>
+      <div>
+        <p><a href="#" id="open-privacy">Privacy</a> • <a href="#" id="open-terms">Terms</a></p>
+      </div>
     </div>
-    <div class="course-card">
-      <h3>Financial Freedom 101</h3>
-      <p>Learn core money management strategies.</p>
-      <button class="btn" onclick="checkout('course1')">Buy $99</button>
-    </div>
-    <div class="course-card">
-      <h3>Investing for Beginners</h3>
-      <p>Step into investing with confidence.</p>
-      <button class="btn" onclick="checkout('course2')">Buy $149</button>
-    </div>
-  </section>
-
-  <section id="videos" class="hidden">
-    <h2>Recorded eCourses (Members Only)</h2>
-    <div class="video-gallery">
-      <video controls src="sample-video.mp4"></video>
-      <video controls src="sample-video.mp4"></video>
-    </div>
-  </section>
-
-  <section id="booking" class="hidden">
-    <h2>Book a 1-on-1 Session with Mrs. Richardson</h2>
-    <p>Exclusive coaching sessions for members.</p>
-    <button class="btn">Schedule Now</button>
-  </section>
-
-  <section id="live" class="hidden">
-    <h2>Live Classes</h2>
-    <p>Join live sessions and interact in real-time.</p>
-    <button class="btn">Join Live Stream</button>
-  </section>
-
-  <section id="login">
-    <h2>Login / Sign Up</h2>
-    <form onsubmit="login(event)">
-      <input type="email" placeholder="Email" required><br><br>
-      <input type="password" placeholder="Password" required><br><br>
-      <button type="submit" class="btn">Login</button>
-    </form>
-    <p><small>Admin Login available for Mrs. Richardson to upload content.</small></p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Wealth Options University | Designed by Agape Code Solutions LLC</p>
+    <p class="copy">© <span id="year"></span> Wealth Options University</p>
   </footer>
 
   <!-- Chat bubble -->
-  <div class="chat-bubble" onclick="alert('Chat feature coming soon!')">💬</div>
+  <div id="chat-bubble" class="chat-bubble">
+    <button id="chat-toggle" class="chat-toggle">💬</button>
+    <div class="chat-window">
+      <div class="chat-header">Live Chat</div>
+      <div class="chat-body" id="chat-body">
+        <div class="msg system">Welcome! Ask us anything.</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chat-text" placeholder="Type your message..." />
+        <button id="chat-send">Send</button>
+      </div>
+    </div>
+  </div>
 
-  <script src="https://js.stripe.com/v3/"></script>
+  <!-- Policy modal -->
+  <div class="modal hidden" id="policy-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="policy-close">×</button>
+      <h3 id="policy-title">Policy</h3>
+      <div id="policy-body"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script>
-    // Stripe checkout placeholders (replace with real product IDs + backend session)
-    function checkout(product) {
-      alert("Stripe Checkout triggered for " + product + ". Backend integration required.");
+    // SPA router
+    function setActiveRoute(){
+      const hash = location.hash.replace('#','') || '/';
+      const route = hash.startsWith('/') ? hash : '/';
+      document.querySelectorAll('.section').forEach(s => {
+        s.classList.toggle('active', s.dataset.route === route);
+      });
+      switch(route){
+        case '/courses':
+        case '/membership':
+          initStripeButtons();
+          break;
+        case '/dashboard':
+          initDashboard();
+          break;
+        case '/booking':
+          initBooking();
+          break;
+        case '/live':
+          initLiveChat();
+          break;
+        case '/admin':
+          initAdminUploads();
+          break;
+      }
+    }
+    window.addEventListener('hashchange', setActiveRoute);
+
+    // Global state
+    const state = {
+      user: null,           // { email, name, roles: [] }
+      entitlements: [],     // ['membership', 'foundations', 'digitalincome', 'investing101']
+      videos: [],           // populated after verify-access
+      downloads: [],        // populated after verify-access
+      isAdmin: false
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year')?.appendChild(document.createTextNode(new Date().getFullYear()));
+      initNavToggle();
+      initChatBubble();
+      initCarousel();
+      initPolicyModals();
+      setActiveRoute();
+    });
+
+    // Mobile nav toggle
+    function initNavToggle(){
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', () => {
+        const open = nav.style.display === 'block';
+        nav.style.display = open ? 'none' : 'block';
+      });
     }
 
-    // Fake login (replace with backend / Firebase auth)
-    function login(event) {
-      event.preventDefault();
-      alert("Login successful! Unlocking content...");
-      document.getElementById("videos").classList.remove("hidden");
-      document.getElementById("booking").classList.remove("hidden");
-      document.getElementById("live").classList.remove("hidden");
+    // Simple carousel
+    function initCarousel(){
+      const slides = document.querySelectorAll('.carousel .slide');
+      const dots = document.querySelector('.dots');
+      if (!slides.length || !dots) return;
+      if (dots.childElementCount) return; // avoid duplicates on re-init
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.addEventListener('click', () => {
+          slides.forEach(s => s.classList.remove('active'));
+          dots.querySelectorAll('button').forEach(d => d.classList.remove('active'));
+          slides[i].classList.add('active'); b.classList.add('active');
+        });
+        dots.appendChild(b);
+      });
+      dots.querySelector('button')?.classList.add('active');
+    }
+
+    // Policy modals
+    function initPolicyModals(){
+      const modal = document.getElementById('policy-modal');
+      const body = document.getElementById('policy-body');
+      const title = document.getElementById('policy-title');
+      const openPrivacy = document.getElementById('open-privacy');
+      const openTerms = document.getElementById('open-terms');
+      const close = document.getElementById('policy-close');
+      if (!modal) return;
+      openPrivacy?.addEventListener('click', (e)=>{e.preventDefault();title.textContent='Privacy';body.innerHTML='<p>We respect your privacy. Your data is used only to provide services and support.</p>';modal.classList.remove('hidden');});
+      openTerms?.addEventListener('click', (e)=>{e.preventDefault();title.textContent='Terms';body.innerHTML='<p>By purchasing, you agree to our refund policy and usage terms.</p>';modal.classList.remove('hidden');});
+      close?.addEventListener('click', ()=>modal.classList.add('hidden'));
+    }
+
+    // Live chat bubble
+    function initChatBubble(){
+      const toggle = document.getElementById('chat-toggle');
+      const windowEl = document.querySelector('.chat-window');
+      const send = document.getElementById('chat-send');
+      const input = document.getElementById('chat-text');
+      const body = document.getElementById('chat-body');
+      if (!toggle || !windowEl) return;
+      toggle.addEventListener('click', () => {
+        windowEl.style.display = windowEl.style.display === 'block' ? 'none' : 'block';
+      });
+      send?.addEventListener('click', () => {
+        const text = (input?.value || '').trim();
+        if (!text) return;
+        addMsg(body, 'user', text);
+        input.value = '';
+        setTimeout(()=>addMsg(body, 'system', 'Thanks! We’ll be with you shortly.'), 600);
+      });
+    }
+    function addMsg(container, type, text){
+      const div = document.createElement('div');
+      div.className = `msg ${type}`;
+      div.textContent = text;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    // Stripe Checkout session creation
+    function initStripeButtons(){
+      if (window.__stripeInitialized) return;
+      window.__stripeInitialized = true;
+      const stripe = Stripe('pk_test_REPLACE_WITH_YOUR_PUBLISHABLE_KEY');
+      document.querySelectorAll('.start-checkout').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const courseId = btn.dataset.courseId || btn.dataset.membership;
+          const priceLookup = btn.closest('[data-price]')?.dataset.price;
+          try {
+            const res = await fetch('/.netlify/functions/create-checkout-session', {
+              method: 'POST',
+              headers: {'Content-Type':'application/json'},
+              body: JSON.stringify({
+                priceId: priceLookup,
+                itemId: courseId,
+                mode: btn.dataset.membership ? 'subscription' : 'payment',
+                success_url: window.location.origin + '/#/dashboard?success=true',
+                cancel_url: window.location.href
+              })
+            });
+            const data = await res.json();
+            if (data.sessionId) {
+              stripe.redirectToCheckout({ sessionId: data.sessionId });
+            } else {
+              alert('Unable to start checkout. Please try again.');
+            }
+          } catch(err){
+            console.error(err);
+            alert('Checkout error. Please try again.');
+          }
+        });
+      });
+    }
+
+    // Dashboard: user & admin sign-in + load entitlements
+    function initDashboard(){
+      const loginSubmit = document.getElementById('login-submit');
+      const adminSubmit = document.getElementById('admin-submit');
+      const logout = document.getElementById('logout');
+
+      const savedUser = localStorage.getItem('wou_user');
+      const savedAdmin = localStorage.getItem('wou_admin');
+      if (savedUser){
+        state.user = JSON.parse(savedUser);
+        document.getElementById('user-name').textContent = state.user.name || 'Student';
+        loadAccess();
+      }
+      if (savedAdmin){
+        state.isAdmin = true;
+      }
+
+      loginSubmit?.addEventListener('click', async ()=>{
+        const email = document.getElementById('login-email').value.trim();
+        const pass = document.getElementById('login-pass').value.trim();
+        if (!email || !pass) return alert('Enter email and password');
+        // In production: verify via backend before creating session
+        state.user = { email, name: email.split('@')[0], roles: ['student'] };
+        localStorage.setItem('wou_user', JSON.stringify(state.user));
+        document.getElementById('user-name').textContent = state.user.name;
+        loadAccess();
+      });
+
+      adminSubmit?.addEventListener('click', async ()=>{
+        const email = document.getElementById('admin-email').value.trim();
+        const pass = document.getElementById('admin-pass').value.trim();
+        if (!email || !pass) return alert('Enter admin email & password');
+        // In production: verify admin credentials server-side and set a secure token
+        state.isAdmin = true;
+        localStorage.setItem('wou_admin', JSON.stringify({ email }));
+        alert('Admin signed in. Visit the Admin Uploads page.');
+      });
+
+      logout?.addEventListener('click', ()=>{
+        localStorage.removeItem('wou_user');
+        localStorage.removeItem('wou_admin');
+        state.user = null; state.isAdmin = false;
+        location.hash = '#/';
+      });
+    }
+
+    async function loadAccess(){
+      document.getElementById('access-note').textContent = 'Verifying your purchases...';
+      try {
+        const res = await fetch('/.netlify/functions/verify-access', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email: state.user.email })
+        });
+        const data = await res.json();
+        state.entitlements = data.entitlements || [];
+        state.videos = data.videos || [];
+        state.downloads = data.downloads || [];
+        renderContent();
+      } catch(err){
+        console.error(err);
+        document.getElementById('access-note').textContent = 'Unable to verify access. Please contact support.';
+      }
+    }
+
+    function renderContent(){
+      const note = document.getElementById('access-note');
+      if (!state.entitlements.length) {
+        note.innerHTML = 'No active purchases found. Visit <a href="#/courses">eCourses</a> or <a href="#/membership">Membership</a>.';
+      } else {
+        note.textContent = 'Access granted.';
+      }
+
+      const videoList = document.getElementById('video-list');
+      videoList.innerHTML = '';
+      state.videos.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${v.title}</h3>
+          <p>${v.description || ''}</p>
+          <video controls src="${v.secureUrl}" preload="metadata" style="width:100%;border-radius:12px"></video>
+          <div style="margin-top:8px">
+            <a class="btn-ghost" href="${v.downloadUrl}" download>Download video</a>
+          </div>
+        `;
+        videoList.appendChild(card);
+      });
+
+      const dl = document.getElementById('download-list');
+      dl.innerHTML = '';
+      state.downloads.forEach(d => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${d.name}</span><a class="btn-ghost" href="${d.url}" download>Download</a>`;
+        dl.appendChild(li);
+      });
+    }
+
+    // Booking handler (demo; gate on entitlement)
+    function initBooking(){
+      const form = document.getElementById('booking-form');
+      if (!form) return;
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const fd = new FormData(form);
+        const payload = Object.fromEntries(fd.entries());
+        // In production: verify entitlement server-side, then create event or send confirmation
+        alert('Booking request submitted. You will be notified by email.');
+        form.reset();
+      });
+    }
+
+    // Live page chat (simple local chat)
+    function initLiveChat(){
+      const send = document.getElementById('live-chat-send');
+      const input = document.getElementById('live-chat-text');
+      const body = document.getElementById('live-chat-body');
+      send?.addEventListener('click', ()=>{
+        const text = (input.value || '').trim();
+        if (!text) return;
+        addMsg(body, 'user', text);
+        input.value = '';
+        setTimeout(()=>addMsg(body, 'system', 'Great point!'), 600);
+      });
+    }
+
+    // Admin uploads: require admin session + signed Cloudinary upload
+    function initAdminUploads(){
+      const guard = document.getElementById('admin-guard');
+      const form = document.getElementById('upload-form');
+      const drop = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('video-file');
+      const status = document.getElementById('upload-status');
+      const list = document.getElementById('admin-video-list');
+
+      const savedAdmin = localStorage.getItem('wou_admin');
+      if (!savedAdmin){
+        guard.style.display = 'block';
+        form.style.display = 'none';
+        return;
+      }
+      guard.style.display = 'none';
+      form.style.display = 'block';
+
+      drop.addEventListener('click', ()=>fileInput.click());
+      ['dragenter','dragover'].forEach(evt => drop.addEventListener(evt, e => { e.preventDefault(); drop.style.borderColor = 'var(--primary)'; }));
+      ['dragleave','drop'].forEach evt => drop.addEventListener(evt, e => { e.preventDefault(); drop.style.borderColor = 'rgba(0,0,0,0.15)'; });
+      drop.addEventListener('drop', e => { fileInput.files = e.dataTransfer.files; });
+
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const fd = new FormData(form);
+        const course = fd.get('course');
+        const title = fd.get('title');
+        const description = fd.get('description');
+        const file = fileInput.files[0];
+        if (!file) return alert('Select a video file');
+
+        status.textContent = 'Requesting upload signature...';
+
+        try {
+          const sigRes = await fetch('/.netlify/functions/cloudinary-signature', { method:'POST' });
+          const { timestamp, signature, cloudName, apiKey, folder } = await sigRes.json();
+
+          status.textContent = 'Uploading... (this may take a while)';
+          const cloudUrl = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
+
+          const upl = new FormData();
+          upl.append('file', file);
+          upl.append('api_key', apiKey);
+          upl.append('timestamp', timestamp);
+          upl.append('signature', signature);
+          upl.append('folder', folder);
+          upl.append('resource_type', 'video');
+
+          const res = await fetch(cloudUrl, { method:'POST', body: upl });
+          const data = await res.json();
+          if (data.secure_url){
+            status.textContent = 'Upload complete. Saving record...';
+
+            // Save mapping (course -> video)
+            const saveRes = await fetch('/.netlify/functions/verify-access', {
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify({ adminSave:true, course, video: {
+                title, description,
+                secureUrl: data.secure_url,
+                downloadUrl: data.secure_url
+              }})
+            });
+            await saveRes.json();
+
+            status.textContent = 'Saved! Video is now available to entitled users.';
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${title} (${course})</span><a class="btn-ghost" href="${data.secure_url}" target="_blank">View</a>`;
+            list.prepend(li);
+            form.reset(); fileInput.value = '';
+          } else {
+            status.textContent = 'Upload failed. Try again.';
+          }
+        } catch(err){
+          console.error(err);
+          status.textContent = 'Upload error. Check your credentials.';
+        }
+      });
     }
   </script>
+
+  <!-- Serverless endpoint code (place in your functions directory; included here for reference) -->
+  <script type="text/plain" id="serverless-create-checkout-session.js">
+// functions/create-checkout-session.js
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+exports.handler = async (event) => {
+  try {
+    const { priceId, itemId, mode, success_url, cancel_url } = JSON.parse(event.body || '{}');
+
+    const session = await stripe.checkout.sessions.create({
+      mode: mode || 'payment',
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url,
+      cancel_url,
+      allow_promotion_codes: true,
+      customer_creation: 'always',
+      metadata: { itemId },
+    });
+
+    return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId: session.id }) };
+  } catch (err) {
+    console.error(err);
+    return { statusCode: 500, body: JSON.stringify({ error: 'Unable to create session' }) };
+  }
+};
+  </script>
+
+  <script type="text/plain" id="serverless-verify-access.js">
+// functions/verify-access.js
+// Demo-only: replace with a real database & Stripe webhooks.
+
+let memory = {
+  entitlementsByEmail: {
+    // 'user@example.com': ['membership', 'foundations']
+  },
+  videosByCourse: {
+    foundations: [],
+    digitalincome: [],
+    investing101: [],
+  },
+  downloadsByCourse: {
+    foundations: [{ name: 'Budget Template.xlsx', url: 'https://example.com/budget-template.xlsx' }],
+    digitalincome: [{ name: 'Launch Checklist.pdf', url: 'https://example.com/launch-checklist.pdf' }],
+    investing101: [{ name: 'Risk Planner.xlsx', url: 'https://example.com/risk-planner.xlsx' }],
+  }
+};
+
+exports.handler = async (event) => {
+  try {
+    const body = JSON.parse(event.body || '{}');
+
+    // Admin save new video
+    if (body.adminSave && body.course && body.video){
+      memory.videosByCourse[body.course] = memory.videosByCourse[body.course] || [];
+      memory.videosByCourse[body.course].push(body.video);
+      return ok({ saved: true });
+    }
+
+    const email = body.email || '';
+    const entitlements = memory.entitlementsByEmail[email] || [];
+
+    const videos = entitlements.flatMap(course => (memory.videosByCourse[course] || []));
+    const downloads = entitlements.flatMap(course => (memory.downloadsByCourse[course] || []));
+
+    return ok({ entitlements, videos, downloads });
+  } catch (err){
+    console.error(err);
+    return { statusCode: 500, body: JSON.stringify({ error: 'verify-access error' }) };
+  }
+};
+
+function ok(payload){
+  return { statusCode: 200, headers: { 'Content-Type':'application/json' }, body: JSON.stringify(payload) };
+}
+  </script>
+
+  <script type="text/plain" id="serverless-cloudinary-signature.js">
+// functions/cloudinary-signature.js
+const crypto = require('crypto');
+
+exports.handler = async () => {
+  const timestamp = Math.floor(Date.now()/1000);
+  const folder = 'wealth-options-university/videos';
+  const apiKey = process.env.CLOUDINARY_API_KEY;
+  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+
+  const toSign = `folder=${folder}&timestamp=${timestamp}`;
+  const signature = crypto.createHash('sha1').update(toSign + apiSecret).digest('hex');
+
+  return {
+    statusCode: 200,
+    headers: { 'Content-Type':'application/json' },
+    body: JSON.stringify({ timestamp, signature, cloudName, apiKey, folder })
+  };
+};
+  </script>
+
+  <!-- Quick deployment notes
+    - Replace pk_test_REPLACE_WITH_YOUR_PUBLISHABLE_KEY with your Stripe publishable key.
+    - Create Stripe Prices and set the data-price attributes accordingly (e.g., price_123).
+    - Add STRIPE_SECRET_KEY to your serverless environment.
+    - Implement Stripe webhooks (checkout.session.completed, invoice.payment_succeeded) to persist entitlements by customer email in your DB, and update verify-access.js to read real data.
+    - Add CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME to enable admin uploads.
+    - For production security: protect /admin with server-side auth & roles; never rely on localStorage alone.
+  -->
 </body>
 </html>
